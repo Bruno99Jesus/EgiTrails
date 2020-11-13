@@ -4,6 +4,6 @@ O objetivo deste projeto é dinamizar a região e permitir que as pessoas possam
 
 
 # Autores
-Bruno Jesus     -> https://github.com/Bruno99Jesus
-Daniel Pereira  -> https://github.com/DanielSiob
-Rui Pissarra    -> https://github.com/rui1199
+<p>Bruno Jesus     -> https://github.com/Bruno99Jesus
+<p>Daniel Pereira  -> https://github.com/DanielSiob
+<p>Rui Pissarra    -> https://github.com/rui1199
