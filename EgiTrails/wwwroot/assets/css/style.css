@@ -1091,6 +1091,12 @@ section {
 /*--------------------------------------------------------------
 # Our Team
 --------------------------------------------------------------*/
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
 .team {
   background: #fff;
   padding: 60px 0 30px 0;
