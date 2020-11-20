@@ -355,7 +355,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 #hero .carousel-item {
   width: 100%;
-  height: calc(100vh - 114px);
+  height: calc(70vh);
   background-size: cover;
   background-position: top right;
   background-repeat: no-repeat;
@@ -383,7 +383,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   bottom: 0;
   top: 0;
   left: 0;
-  right: 0;
+  right: 0;hero-container
   overflow: hidden;
 }
 
