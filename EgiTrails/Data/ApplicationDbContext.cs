@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using EgiTrails.Models;
 
 namespace EgiTrails.Data
 {
@@ -12,5 +13,6 @@ namespace EgiTrails.Data
             : base(options)
         {
         }
+        public DbSet<EgiTrails.Models.Trilhos> Trilhos { get; set; }
     }
 }
