@@ -15,5 +15,6 @@ namespace EgiTrails.Data
         }
         public DbSet<EgiTrails.Models.Trilhos> Trilhos { get; set; }
         public DbSet<EgiTrails.Models.Veiculos> Veiculos { get; set; }
+        public DbSet<EgiTrails.Models.Reservas> Reservas { get; set; }
     }
 }
