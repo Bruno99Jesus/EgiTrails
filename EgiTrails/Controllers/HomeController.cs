@@ -42,7 +42,14 @@ namespace EgiTrails.Controllers
         {
             return View();
         }
-            public IActionResult Privacy()
+
+
+        public IActionResult ReservaVeiculos()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
