@@ -33,6 +33,11 @@ namespace EgiTrails.Controllers
             return View();
         }
 
+        public IActionResult TrilhosOffRoad()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
