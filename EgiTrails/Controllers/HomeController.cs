@@ -48,6 +48,11 @@ namespace EgiTrails.Controllers
             return View();
         }
 
+        public IActionResult TrilhosUrbanos()
+        {
+            return View();
+        }
+
 
         public IActionResult ReservaVeiculos()
         {
