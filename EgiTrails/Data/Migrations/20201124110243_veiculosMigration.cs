@@ -15,6 +15,7 @@ namespace EgiTrails.Data.Migrations
                     Nome = table.Column<string>(nullable: true),
                     TipoVeiculo = table.Column<string>(nullable: true),
                     Descricao = table.Column<string>(nullable: true)
+
                 },
                 constraints: table =>
                 {

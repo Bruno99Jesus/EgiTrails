@@ -11,5 +11,7 @@ namespace EgiTrails.Models
         public string Nome { get; set; }
         public string TipoVeiculo { get; set; }
         public string Descricao { get; set; }
+
+        public string Descricao2 { get; set; }
     }
 }
