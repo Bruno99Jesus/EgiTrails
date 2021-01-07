@@ -22,7 +22,10 @@ namespace EgiTrails.Controllers
         // GET: Trilhos
         public async Task<IActionResult> Index()
         {
+            var Teste = _context.Trilhos.Select(o => o.Nome).ToList();  ////BUSCAR DADOS PARA A VARIAVEL
             return View(await _context.Trilhos.ToListAsync());
+            
+
         }
 
         // GET: Trilhos/Details/5
