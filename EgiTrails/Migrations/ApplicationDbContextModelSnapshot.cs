@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EgiTrails.Data.Migrations
+namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -74,16 +74,13 @@ namespace EgiTrails.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("Desativo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Descricao2")
+                    b.Property<string>("Modelo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TipoVeiculo")
+                    b.Property<string>("NumLugares")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VeiculosId");

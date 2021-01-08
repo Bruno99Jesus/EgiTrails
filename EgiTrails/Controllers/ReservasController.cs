@@ -54,7 +54,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasId,Nome,Data,NPessoas,Descricao")] Reservas reservas)
+        public async Task<IActionResult> Create([Bind("ReservasId,Modelo,Data,NPessoas,Desativo")] Reservas reservas)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasId,Nome,Data,NPessoas,Descricao")] Reservas reservas)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasId,Modelo,Data,NPessoas,Desativo")] Reservas reservas)
         {
             if (id != reservas.ReservasId)
             {
