@@ -4,16 +4,14 @@ using EgiTrails.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EgiTrails.Data.Migrations
+namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201124111617_reservasMigration")]
-    partial class reservasMigration
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,13 +74,13 @@ namespace EgiTrails.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("Desativo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Modelo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TipoVeiculo")
+                    b.Property<string>("NumLugares")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VeiculosId");

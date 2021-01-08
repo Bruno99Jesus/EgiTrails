@@ -8,8 +8,9 @@ namespace EgiTrails.Models
     public class Veiculos
     {
         public int VeiculosId { get; set; }
-        public string Nome { get; set; }
-        public string TipoVeiculo { get; set; }
-        public string Descricao { get; set; }
+        public string Modelo { get; set; }
+        public string NumLugares { get; set; }
+        public string Desativo { get; set; }
+
     }
 }

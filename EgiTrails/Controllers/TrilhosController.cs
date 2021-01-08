@@ -22,7 +22,10 @@ namespace EgiTrails.Controllers
         // GET: Trilhos
         public async Task<IActionResult> Index()
         {
+            var Teste = _context.Trilhos.Select(o => o.Nome).ToList();  ////BUSCAR DADOS PARA A VARIAVEL
             return View(await _context.Trilhos.ToListAsync());
+            
+
         }
 
         // GET: Trilhos/Details/5
@@ -54,7 +57,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto")] Trilhos trilhos)
+        public async Task<IActionResult> Create([Bind("TrilhosId,Modelo,TipoTrilho,Description,Trajeto")] Trilhos trilhos)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +89,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto")] Trilhos trilhos)
+        public async Task<IActionResult> Edit(int id, [Bind("TrilhosId,Modelo,TipoTrilho,Description,Trajeto")] Trilhos trilhos)
         {
             if (id != trilhos.TrilhosId)
             {
