@@ -22,8 +22,7 @@ namespace EgiTrails.Controllers
         // GET: Veiculos
         public async Task<IActionResult> Index()
         {
-            var ModeloVeiculo = _context.Veiculos.Select(o => o.Modelo).ToList();  ////BUSCAR DADOS PARA A VARIAVEL
-            var LugaresVeiculo = _context.Veiculos.Select(o => o.NumLugares).ToList();
+            
             return View(await _context.Veiculos.ToListAsync());
         }
 
