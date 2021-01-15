@@ -54,7 +54,7 @@ namespace EgiTrails.Controllers
         }
 
 
-        public IActionResult ReservaVeiculos()
+        public IActionResult ReservasVeiculos()
         {
             return View();
         }

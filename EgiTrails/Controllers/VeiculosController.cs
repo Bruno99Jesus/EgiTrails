@@ -22,6 +22,7 @@ namespace EgiTrails.Controllers
         // GET: Veiculos
         public async Task<IActionResult> Index()
         {
+            
             return View(await _context.Veiculos.ToListAsync());
         }
 
