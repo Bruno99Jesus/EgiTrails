@@ -10,15 +10,20 @@ namespace EgiTrails.Models
     {
         public int ReservasId { get; set; }
         [Required(ErrorMessage = "E obrigatorio por o Nome")]
+        [StringLength(256)]
         public string Nome { get; set; }
+        [Required(ErrorMessage = "Tem de por o Telemovel")]
+        public int Telemovel { get; set; }
+        [Required(ErrorMessage = "Tem de por o E-mail")]
+        [StringLength(256)]
+        [EmailAddress]
+        public string Email { get; set; }
         [Required(ErrorMessage = "Tem de por a data")]
         public DateTime Data { get; set; }
         [Required(ErrorMessage = "diga quantas pessoas sao")]
         public int NPessoas { get; set; }
-        [Required(ErrorMessage = "o numero de telemovel")]
-        public int Telemovel { get; set; }
-        [Required]
-        public string Descricao { get; set; }
 
+        [Required]
+        public string TipoVeiculo { get; set; }
     }
 }
