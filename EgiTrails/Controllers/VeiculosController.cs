@@ -23,10 +23,27 @@ namespace EgiTrails.Controllers
         public async Task<IActionResult> Index(string sortOrder,string currentFilter,string searchString,int? pageNumber)        
         {
             ViewData["CurrentSort"] = sortOrder;
-           
+            ViewData["ModeloSortParm"] = String.IsNullOrEmpty(sortOrder) ? "modelo" : "";
+            ViewData["NumLugSortParm"] = String.IsNullOrEmpty(sortOrder) ? "num_lug" : "";
+            ViewData["DesativoSortParm"] = String.IsNullOrEmpty(sortOrder) ? "desativo" : "";
+
             var veiculos = from s in _context.Veiculos
                            select s;
-
+            switch (sortOrder)
+            {
+                case "modelo":
+                    veiculos = veiculos.OrderByDescending(s => s.Modelo);
+                    break;
+                case "num_lug":
+                    veiculos = veiculos.OrderByDescending(s => s.NumLugares);
+                    break;
+                case "desativo":
+                    veiculos = veiculos.OrderByDescending(s => s.Desativo);
+                    break;
+                default:
+                    veiculos = veiculos.OrderBy(s => s.Modelo);
+                    break;
+            }
 
             if (searchString != null)
             {
@@ -37,7 +54,7 @@ namespace EgiTrails.Controllers
                 searchString = currentFilter;
             }
 
-            int pageSize = 2;
+            int pageSize = 5;
             return View(await PaginatedList<Veiculos>.CreateAsync(veiculos.AsNoTracking(), pageNumber ?? 1, pageSize));
 
         }
