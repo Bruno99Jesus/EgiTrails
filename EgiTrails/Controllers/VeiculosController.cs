@@ -20,10 +20,26 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Veiculos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,string currentFilter,string searchString,int? pageNumber)        
         {
-            
-            return View(await _context.Veiculos.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+           
+            var veiculos = from s in _context.Veiculos
+                           select s;
+
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            int pageSize = 2;
+            return View(await PaginatedList<Veiculos>.CreateAsync(veiculos.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Veiculos/Details/5
