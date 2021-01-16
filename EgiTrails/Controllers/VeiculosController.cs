@@ -26,6 +26,7 @@ namespace EgiTrails.Controllers
             ViewData["ModeloSortParm"] = String.IsNullOrEmpty(sortOrder) ? "modelo" : "";
             ViewData["NumLugSortParm"] = String.IsNullOrEmpty(sortOrder) ? "num_lug" : "";
             ViewData["DesativoSortParm"] = String.IsNullOrEmpty(sortOrder) ? "desativo" : "";
+            ViewData["CurrentFilter"] = searchString;
 
             var veiculos = from s in _context.Veiculos
                            select s;
@@ -43,6 +44,13 @@ namespace EgiTrails.Controllers
                 default:
                     veiculos = veiculos.OrderBy(s => s.Modelo);
                     break;
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                veiculos = veiculos.Where(s => s.Modelo.Contains(searchString)
+                                       || s.NumLugares.Contains(searchString)
+                                       || s.Desativo.Contains(searchString));
             }
 
             if (searchString != null)
