@@ -86,7 +86,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasId,Modelo,Data,NPessoas,Desativo")] Reservas reservas)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasId,Nome,Data,NPessoas,Telemovel,Email,TipoVeiculo")] Reservas reservas)
         {
             if (id != reservas.ReservasId)
             {

@@ -4,14 +4,16 @@ using EgiTrails.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210115122037_reservas")]
+    partial class reservas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,23 +66,7 @@ namespace EgiTrails.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Distancia")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LimMaxPes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocFim")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocIni")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocInter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TipoTrilho")

@@ -20,10 +20,51 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Veiculos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,string currentFilter,string searchString,int? pageNumber)        
         {
-            
-            return View(await _context.Veiculos.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["ModeloSortParm"] = String.IsNullOrEmpty(sortOrder) ? "modelo" : "";
+            ViewData["NumLugSortParm"] = String.IsNullOrEmpty(sortOrder) ? "num_lug" : "";
+            ViewData["DesativoSortParm"] = String.IsNullOrEmpty(sortOrder) ? "desativo" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            var veiculos = from s in _context.Veiculos
+                           select s;
+            switch (sortOrder)
+            {
+                case "modelo":
+                    veiculos = veiculos.OrderByDescending(s => s.Modelo);
+                    break;
+                case "num_lug":
+                    veiculos = veiculos.OrderByDescending(s => s.NumLugares);
+                    break;
+                case "desativo":
+                    veiculos = veiculos.OrderByDescending(s => s.Desativo);
+                    break;
+                default:
+                    veiculos = veiculos.OrderBy(s => s.Modelo);
+                    break;
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                veiculos = veiculos.Where(s => s.Modelo.Contains(searchString)
+                                       || s.NumLugares.Contains(searchString)
+                                       || s.Desativo.Contains(searchString));
+            }
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Veiculos>.CreateAsync(veiculos.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Veiculos/Details/5
