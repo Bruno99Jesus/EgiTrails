@@ -24,6 +24,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.Trajeto)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distancia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocInter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimMaxPes)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,6 +56,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Trajeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distancia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocIni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocInter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocFim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimMaxPes)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TrilhosId">Edit</a> |

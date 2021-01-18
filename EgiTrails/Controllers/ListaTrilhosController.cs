@@ -33,7 +33,7 @@ namespace EgiTrails.Controllers
 
             ViewBag.dadosTrilhos = dadosTrilhos;
 
-            return View(await _context.Trilhos.ToListAsync());
+            return View();
         }
 
         // GET: ListaTrilhos/Details/5
