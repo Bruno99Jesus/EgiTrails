@@ -20,9 +20,80 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Trilhos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Trilhos.ToListAsync());
+            ViewData["NomeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "nome_desc" : "";
+            ViewData["TipoTrilhoSortParm"] = sortOrder == "TipoTrilho" ? "tipotrilho_desc" : "TipoTrilho";
+            ViewData["TrajetoSortParm"] = sortOrder == "Trajeto" ? "trajeto_desc" : "Trajeto";
+            ViewData["DistanciaSortParm"] = sortOrder == "Distancia" ? "distancia_desc" : "Distancia";
+            ViewData["LocIniSortParm"] = sortOrder == "LocIni" ? "locini_desc" : "LocIni";
+            ViewData["LocInterSortParm"] = sortOrder == "LocInter" ? "locinter_desc" : "LocInter";
+            ViewData["LocFimSortParm"] = sortOrder == "LocFim" ? "locfim_desc" : "LocFim";
+            ViewData["LimMaxPesSortParm"] = sortOrder == "LimMaxPes" ? "limmaxpes_desc" : "LimMaxPes";
+            ViewData["CurrentFilter"] = searchString;
+
+            var trilhos = from s in _context.Trilhos
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                trilhos = trilhos.Where(s => s.Nome.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "nome_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.Nome);
+                    break;
+                case "TipoTrilho":
+                    trilhos = trilhos.OrderBy(s => s.TipoTrilho);
+                    break;
+                case "tipotrilho_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.TipoTrilho);
+                    break;
+                case "Trajeto":
+                    trilhos = trilhos.OrderBy(s => s.Trajeto);
+                    break;
+                case "trajeto_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.Trajeto);
+                    break;
+                case "Distancia":
+                    trilhos = trilhos.OrderBy(s => s.Distancia);
+                    break;
+                case "distancia_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.Distancia);
+                    break;
+                case "LocIni":
+                    trilhos = trilhos.OrderBy(s => s.LocIni);
+                    break;
+                case "locini_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.LocIni);
+                    break;
+                case "LocInter":
+                    trilhos = trilhos.OrderBy(s => s.LocInter);
+                    break;
+                case "locinter_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.LocInter);
+                    break;
+                case "LocFim":
+                    trilhos = trilhos.OrderBy(s => s.LocFim);
+                    break;
+                case "locfim_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.LocFim);
+                    break;
+                case "LimMaxPes":
+                    trilhos = trilhos.OrderBy(s => s.LimMaxPes);
+                    break;
+                case "limmaxpes_desc":
+                    trilhos = trilhos.OrderByDescending(s => s.LimMaxPes);
+                    break;
+
+                default:
+                    trilhos = trilhos.OrderBy(s => s.Nome);
+                    break;
+            }
+            return View(await trilhos.AsNoTracking().ToListAsync());
+            //return View(await _context.Trilhos.ToListAsync());
         }
 
         // GET: Trilhos/Details/5
