@@ -19,7 +19,7 @@ namespace EgiTrails.Models
 
         public string Trajeto { get; set; }
 
-        public string Distancia { get; set; }
+        public float Distancia { get; set; }
 
         public string LocIni { get; set; }
 
@@ -27,7 +27,7 @@ namespace EgiTrails.Models
 
         public string LocFim { get; set; }
 
-        public string LimMaxPes { get; set; }
+        public int LimMaxPes { get; set; }
 
     }
 }

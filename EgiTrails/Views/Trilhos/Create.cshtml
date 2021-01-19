@@ -17,11 +17,19 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="TipoTrilho" class="control-label"></label>
-                <input asp-for="TipoTrilho" class="form-control" />
+                <select asp-for="TipoTrilho" class="form-control" required>
+                    <option value="">Selecione uma opção</option>
+                    <option>Urbano</option>
+                    <option>Pedestre</option>
+                    <option>Bicicleta</option>
+                    <option>Off-Road</option>
+                </select>
                 <span asp-validation-for="TipoTrilho" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
