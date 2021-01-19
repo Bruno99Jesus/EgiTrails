@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210115021954_thrird")]
-    partial class thrird
+    [Migration("20210119110439_estado")]
+    partial class estado
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,8 +31,15 @@ namespace EgiTrails.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descricao")
+                    b.Property<DateTime>("DataEstado")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NPessoas")
@@ -40,10 +47,15 @@ namespace EgiTrails.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<int>("Telemovel")
                         .HasColumnType("int");
+
+                    b.Property<string>("TipoVeiculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservasId");
 
