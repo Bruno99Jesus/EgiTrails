@@ -16,6 +16,12 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Data)
             </th>
             <th>
@@ -23,6 +29,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TipoVeiculo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEstado)
             </th>
             <th></th>
         </tr>
@@ -34,6 +46,12 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Telemovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
@@ -42,6 +60,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TipoVeiculo)
             </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.DataEstado)
+            </th>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReservasId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ReservasId">Details</a> |

@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EgiTrails.Controllers
 {
-    [Authorize]
     public class ReservasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -56,7 +55,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasId,Modelo,Data,NPessoas,Desativo")] Reservas reservas)
+        public async Task<IActionResult> Create([Bind("ReservasId,Nome,Data,Email,Telemovel,NPessoas,TipoVeiculo")] Reservas reservas)
         {
             if (ModelState.IsValid)
             {
