@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EgiTrails.Models.Trilhos>
+﻿@model PaginatedList<EgiTrails.Models.Trilhos>
 
 @{
     ViewData["Title"] = "Index";
@@ -25,31 +25,31 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NomeSortParm"]">@Html.DisplayNameFor(model => model.Nome)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NomeSortParm"]">@Html.DisplayNameFor(model => model.First().Nome)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["TipoTrilhoSortParm"]">@Html.DisplayNameFor(model => model.TipoTrilho)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TipoTrilhoSortParm"]">@Html.DisplayNameFor(model => model.First().TipoTrilho)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.First().Description)
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["TrajetoSortParm"]">@Html.DisplayNameFor(model => model.Trajeto)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TrajetoSortParm"]">@Html.DisplayNameFor(model => model.First().Trajeto)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DistanciaSortParm"]">@Html.DisplayNameFor(model => model.Distancia)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DistanciaSortParm"]">@Html.DisplayNameFor(model => model.First().Distancia)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocIniSortParm"]">@Html.DisplayNameFor(model => model.LocIni)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocIniSortParm"]">@Html.DisplayNameFor(model => model.First().LocIni)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocInterSortParm"]">@Html.DisplayNameFor(model => model.LocInter)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocInterSortParm"]">@Html.DisplayNameFor(model => model.First().LocInter)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocFimSortParm"]">@Html.DisplayNameFor(model => model.LocFim)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocFimSortParm"]">@Html.DisplayNameFor(model => model.First().LocFim)</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LimMaxPesSortParm"]">@Html.DisplayNameFor(model => model.LimMaxPes)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LimMaxPesSortParm"]">@Html.DisplayNameFor(model => model.First().LimMaxPes)</a>
             </th>
             <th></th>
         </tr>
@@ -94,3 +94,22 @@
         }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

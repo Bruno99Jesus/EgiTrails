@@ -20,8 +20,10 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Trilhos
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
+
             ViewData["NomeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "nome_desc" : "";
             ViewData["TipoTrilhoSortParm"] = sortOrder == "TipoTrilho" ? "tipotrilho_desc" : "TipoTrilho";
             ViewData["TrajetoSortParm"] = sortOrder == "Trajeto" ? "trajeto_desc" : "Trajeto";
@@ -30,7 +32,18 @@ namespace EgiTrails.Controllers
             ViewData["LocInterSortParm"] = sortOrder == "LocInter" ? "locinter_desc" : "LocInter";
             ViewData["LocFimSortParm"] = sortOrder == "LocFim" ? "locfim_desc" : "LocFim";
             ViewData["LimMaxPesSortParm"] = sortOrder == "LimMaxPes" ? "limmaxpes_desc" : "LimMaxPes";
+            
             ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
 
             var trilhos = from s in _context.Trilhos
                            select s;
@@ -92,8 +105,10 @@ namespace EgiTrails.Controllers
                     trilhos = trilhos.OrderBy(s => s.Nome);
                     break;
             }
-            return View(await trilhos.AsNoTracking().ToListAsync());
-            //return View(await _context.Trilhos.ToListAsync());
+
+            //nº de linhas de trilhos por pagina
+            int pageSize = 3;
+            return View(await PaginatedList<Trilhos>.CreateAsync(trilhos.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Trilhos/Details/5
