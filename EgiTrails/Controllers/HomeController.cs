@@ -33,6 +33,11 @@ namespace EgiTrails.Controllers
             return View();
         }
 
+        public IActionResult ListaTrilhos()
+        {
+            return View();
+        }
+
         public IActionResult TrilhosBicicleta()
         {
             return View();
