@@ -21,9 +21,40 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Reservas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.Reservas.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Data_ascending" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            var reservas = from s in _context.Reservas
+                           select s;
+            switch (sortOrder)
+            {
+                case "Data_ascending":
+                    reservas = reservas.OrderBy(s => s.Data);
+                    break;
+                case "telemovel":
+                    reservas = reservas.OrderBy(s => s.Telemovel);
+                    break;
+                case "email":
+                    reservas = reservas.OrderBy(s => s.Email);
+                    break;
+                case "npessoas":
+                    reservas = reservas.OrderBy(s => s.NPessoas);
+                    break;
+                case "Tveiculo":
+                    reservas = reservas.OrderBy(s => s.TipoVeiculo);
+                    break;
+                case "estado":
+                    reservas = reservas.OrderBy(s => s.Estado);
+                    break;
+                case "dataestado":
+                    reservas = reservas.OrderBy(s => s.DataEstado);
+                    break;
+                default:
+                    reservas = reservas.OrderBy(s => s.Nome);
+                    break;
+            }
+            return View(await reservas.AsNoTracking().ToListAsync());
         }
 
         // GET: Reservas/Details/5
