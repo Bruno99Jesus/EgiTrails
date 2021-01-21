@@ -21,12 +21,24 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Reservas
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Data_ascending" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
             var reservas = from s in _context.Reservas
                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reservas = reservas.Where(s => s.Nome.Contains(searchString)
+                                       || s.Telemovel.ToString().Contains(searchString) 
+                                       || s.Data.ToString().Contains(searchString)
+                                       || s.Email.Contains(searchString)
+                                       || s.NPessoas.ToString().Contains(searchString)
+                                       || s.TipoVeiculo.Contains(searchString)
+                                       || s.Estado.Contains(searchString)
+                                       || s.DataEstado.ToString().Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "Data_ascending":
