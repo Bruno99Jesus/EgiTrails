@@ -21,13 +21,23 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Reservas
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, int? pageNumber, string currentFilter)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Data_ascending" : "";
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["CurrentFilter"] = searchString;
             var reservas = from s in _context.Reservas
                            select s;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 reservas = reservas.Where(s => s.Nome.Contains(searchString)
@@ -66,7 +76,8 @@ namespace EgiTrails.Controllers
                     reservas = reservas.OrderBy(s => s.Nome);
                     break;
             }
-            return View(await reservas.AsNoTracking().ToListAsync());
+            int pageSize = 4;
+            return View(await PaginatedList<Reservas>.CreateAsync(reservas.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Reservas/Details/5
@@ -102,6 +113,7 @@ namespace EgiTrails.Controllers
         {
             if (ModelState.IsValid)
             {
+                reservas.DataEstado = null;
                 _context.Add(reservas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
