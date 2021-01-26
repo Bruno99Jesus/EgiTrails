@@ -29,5 +29,7 @@ namespace EgiTrails.Models
 
         public int LimMaxPes { get; set; }
 
+        public byte[] Photo { get; set; }
+
     }
 }

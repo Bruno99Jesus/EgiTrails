@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EgiTrails.Data;
 using EgiTrails.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace EgiTrails.Controllers
 {
@@ -140,10 +142,19 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes")] Trilhos trilhos)
+        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes")] Trilhos trilhos, IFormFile photoFile)
         {
             if (ModelState.IsValid)
             {
+
+                if(photoFile != null && photoFile.Length > 0)
+                {
+                    using (var memFile = new MemoryStream())
+                    {
+                        photoFile.CopyTo(memFile);
+                        trilhos.Photo = memFile.ToArray();
+                    }
+                }
                 _context.Add(trilhos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
