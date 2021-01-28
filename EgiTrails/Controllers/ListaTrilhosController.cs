@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using EgiTrails.Data;
 using EgiTrails.Models;
 
+using Microsoft.AspNetCore.Http;
+
 namespace EgiTrails.Controllers
 {
     public class ListaTrilhosController : Controller
@@ -20,21 +22,28 @@ namespace EgiTrails.Controllers
         }
 
         // GET: ListaTrilhos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(IFormFile photoFile)
         {
             var dadosTrilhos = (from b in _context.Trilhos
                                  select new Trilhos
                                  {
 
                                      Nome = b.Nome,
-                                     Distancia = b.Distancia
+                                     Distancia = b.Distancia,
+                                     Photo = b.Photo
 
                                  }).ToList();
 
             ViewBag.dadosTrilhos = dadosTrilhos;
 
+           // var teste = _context.Trilhos.Select(o => o.Photo).ToList();
+
+
+
             return View();
         }
+
+
 
         // GET: ListaTrilhos/Details/5
         public async Task<IActionResult> Details(int? id)
