@@ -28,8 +28,15 @@
             @foreach (var item in ViewBag.dadosVeiculo)
             {
                 <div class="col-lg-4 col-md-6 portfolio-item filter-bike">
-                    <div class="portfolio-wrap">
-                        <img src="~/assets/img/portofolioBicicletas/bicicleta1.PNG" class="img-fluid" alt="">
+                    <div style="height: 100%; width:100%;" class="portfolio-wrap">
+                        @if (item.Photo != null)
+                        {
+                            <img style="height: 100%; width:100%;" class="img-responsive full-width" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Photo)" />
+                        }
+                        else
+                        {
+                            <img style="height: 100%; width:100%;" class="img-responsive full-width" src="/assets/img/1.PNG" />
+                        }
                         <div class="portfolio-info">
                             <h4>@item.Modelo</h4>
                             <p>@item.NumLugares Lugares</p>

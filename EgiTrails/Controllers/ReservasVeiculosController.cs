@@ -36,11 +36,13 @@ namespace EgiTrails.Controllers
                           {
                               
                               Modelo = b.Modelo,
-                              NumLugares = b.NumLugares
+                              NumLugares = b.NumLugares,
+                              Photo = b.Photo
 
                           }).ToList();
 
             ViewBag.dadosVeiculo = dadosVeiculos;
+
 
             return View();
         }
