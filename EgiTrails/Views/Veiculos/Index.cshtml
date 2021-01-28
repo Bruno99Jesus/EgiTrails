@@ -5,74 +5,111 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Veículos</h2>
+</br>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<a asp-action="Create" type="button" class="btn btn-primary" style="margin-bottom:30px">Adicionar Veículo</a>
 
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
             Pesquisar: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
+            <input type="submit" value="Procurar" class="btn btn-primary" /> |
+            <a asp-action="Index">Voltar á lista completa</a>
         </p>
     </div>
 </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["ModeloSortParm"]">@Html.DisplayNameFor(model => model.First().Modelo)</a>
 
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NumLugSortParm"]">@Html.DisplayNameFor(model => model.First().NumLugares)</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DesativoSortParm"]">@Html.DisplayNameFor(model => model.First().Desativo)</a>
-            </th>
-            <th>
-                <a asp-action="Index">Imagem</a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumLugares)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Desativo)
-            </td>
-            <td>
-                @if (item.Photo != null)
-                {
-                    <img style="height:50px; width:50px;" class="img-responsive full-width" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Photo)" />
-                }
-                else
-                {
-                    <img style="height:50px; width:50px;" class="img-responsive full-width" src="~/assets/img/1.PNG"/>
-                }
+@foreach (var p in Model)
+{
+    <div class="card mt-3">
+        <div class="card-header">
+            <div class="card-title font-weight-bold">@p.Modelo</div>
+        </div>
+        <div class="card-body">
+            Numero de Lugares: @p.NumLugares
+            <hr />
+            @if(p.Desativo == "Não"){
+                <a>Desativo:</a>
+                <span class="text-success">@p.Desativo</span>
+            }else
+            {
+                <a>Desativo:</a>
+                <span class="text-danger">@p.Desativo</span>
+            }
+
+        </div>
+        <div class="card-body">
+                    @if (p.Photo != null)
+                    {
+                        <img style="height:60px; width:60px;" class="img-responsive full-width" src="data:image/jpeg;base64,@Convert.ToBase64String(p.Photo)" />
+                    }
+                    else
+                    {
+                        <img style="height:60px; width:60px;" class="img-responsive full-width" src="~/assets/img/1.PNG"/>
+                    }
+        </div>
+        
+    </div>
+}
+
+
+@*
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ModeloSortParm"]">@Html.DisplayNameFor(model => model.First().Modelo)</a>
+
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumLugSortParm"]">@Html.DisplayNameFor(model => model.First().NumLugares)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DesativoSortParm"]">@Html.DisplayNameFor(model => model.First().Desativo)</a>
+                </th>
+                <th>
+                    <a asp-action="Index">Imagem</a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
                 </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.VeiculosId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.VeiculosId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.VeiculosId">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumLugares)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desativo)
+                </td>
+                <td>
+                    @if (item.Photo != null)
+                    {
+                        <img style="height:50px; width:50px;" class="img-responsive full-width" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Photo)" />
+                    }
+                    else
+                    {
+                        <img style="height:50px; width:50px;" class="img-responsive full-width" src="~/assets/img/1.PNG"/>
+                    }
+                    </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.VeiculosId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.VeiculosId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.VeiculosId">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+*@
+
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -84,13 +121,13 @@
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @prevDisabled">
-    Previous
+    Anterior
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @nextDisabled">
-    Next
+    Seguinte
 
 </a>
