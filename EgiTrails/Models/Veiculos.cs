@@ -14,6 +14,7 @@ namespace EgiTrails.Models
         public string Modelo { get; set; }
         public string NumLugares { get; set; }
         public string Desativo { get; set; }
+        public byte[] Photo { get; set; }
 
 
     }
