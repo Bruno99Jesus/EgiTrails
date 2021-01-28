@@ -55,13 +55,14 @@
                 <ul>
                     <li class="active"><a href="index.cshtml">Home</a></li>
                     <li><a href="/Home/Sobre">Sobre Nós</a></li>
-                    <li><a href="#portfolio">Portefolio</a></li>
+                    <li><a asp-action="Efetuar_Reserva">Efetuar_Reserva</a></li>
+                    <li><a href="/ListaTrilhos/Index">Trilhos</a></li>
                     <li><a href="#team">Equipa</a></li>
                     <li><a href="/ReservasVeiculos/Index">Reserva de Veículos</a></li>
                     <li class="drop-down">
                         <a href="">Serviços</a>
                         <ul>
-                            <li><a asp-action="TrilhosPedestres">Trilhos Pedestres</a></li>
+                            
                             <!--<li class="drop-down">
                 <a href="#">Drop Down 2</a>
                 <ul>
@@ -71,10 +72,7 @@
                     <li><a href="#">Deep Drop Down 4</a></li>
                     <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
-            </li>-->
-                            <li><a asp-action="TrilhosBicicleta">Trilhos Bicicletas</a></li>
-                            <li><a asp-action="TrilhosOffRoad">Trilhos Off-Road</a></li>
-                            <li><a asp-action="TrilhosUrbanos">Trilhos Urbanos</a></li>
+            </li>--><li><a href="/Reservas">ReservaBD</a></li>
                         </ul>
                     </li>
 
@@ -83,7 +81,8 @@
                     <li class="drop-down">
                         <a href="">BD</a>
                         <ul>
-                            <li><a href="/Veiculos">VeiculosBD</a></li>
+                            <li><a href="/Reservas">ReservaBD</a></li>
+                            <li><a href="/Trilhos">TrilhosBD</a></li>
                         </ul>
                     </li>
 

@@ -33,6 +33,11 @@ namespace EgiTrails.Controllers
             return View();
         }
 
+        public IActionResult ListaTrilhos()
+        {
+            return View();
+        }
+
         public IActionResult TrilhosBicicleta()
         {
             return View();
@@ -63,6 +68,12 @@ namespace EgiTrails.Controllers
         {
             return View();
         }
+
+        public IActionResult Efetuar_Reserva()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
