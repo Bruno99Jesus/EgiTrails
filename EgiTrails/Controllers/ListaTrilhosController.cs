@@ -30,7 +30,9 @@ namespace EgiTrails.Controllers
 
                                      Nome = b.Nome,
                                      Distancia = b.Distancia,
-                                     Photo = b.Photo
+                                     Photo = b.Photo,
+                                     TipoTrilho = b.TipoTrilho
+
 
                                  }).ToList();
 
