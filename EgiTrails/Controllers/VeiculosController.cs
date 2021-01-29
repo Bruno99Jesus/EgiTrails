@@ -30,13 +30,15 @@ namespace EgiTrails.Controllers
 
             var veiculos = from s in _context.Veiculos
                            select s;
+
+
             switch (sortOrder)
             {
                 case "modelo":
-                    veiculos = veiculos.OrderByDescending(s => s.Modelo);
+                    veiculos = veiculos.OrderBy(s => s.Modelo);
                     break;
                 case "num_lug":
-                    veiculos = veiculos.OrderByDescending(s => s.NumLugares);
+                    veiculos = veiculos.OrderBy(s => s.NumLugares);
                     break;
                 case "desativo":
                     veiculos = veiculos.OrderByDescending(s => s.Desativo);
@@ -49,7 +51,7 @@ namespace EgiTrails.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 veiculos = veiculos.Where(s => s.Modelo.Contains(searchString)
-                                       || s.NumLugares.Contains(searchString)
+                                       || s.NumLugares.ToString().Contains(searchString)
                                        || s.Desativo.Contains(searchString));
             }
 

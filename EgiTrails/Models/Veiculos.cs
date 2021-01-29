@@ -18,7 +18,9 @@ namespace EgiTrails.Models
         public string Modelo { get; set; }
 
         [Required]
-        public string NumLugares { get; set; }
+        public int NumLugares { get; set; }
+
+        
         public string Desativo { get; set; }
 
 
