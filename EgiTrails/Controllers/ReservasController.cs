@@ -173,6 +173,7 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Reservas/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
