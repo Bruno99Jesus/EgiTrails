@@ -37,7 +37,8 @@ namespace EgiTrails.Controllers
                               
                               Modelo = b.Modelo,
                               NumLugares = b.NumLugares,
-                              Photo = b.Photo
+                              Photo = b.Photo,
+                              TipoVeiculo = b.TipoVeiculo
 
                           }).ToList();
 
