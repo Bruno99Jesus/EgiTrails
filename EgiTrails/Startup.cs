@@ -30,7 +30,7 @@ namespace EgiTrails
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => { 
+            services.AddIdentity<IdentityUser,IdentityRole>(options => { 
             // Sign in
                 options.SignIn.RequireConfirmedAccount = false;
 
@@ -49,14 +49,15 @@ namespace EgiTrails
             })
 
 
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI();
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +85,14 @@ namespace EgiTrails
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            Dados.SeedRolesAsync(roleManager).Wait();
+            Dados.SeedDefaultAdminAsync(userManager).Wait();
+
+            if (env.IsDevelopment())
+            {
+                Dados.SeedDevUsers(userManager);
+            }
         }
     }
 }

@@ -120,7 +120,7 @@ namespace EgiTrails.Controllers
             }
             return View(reservas);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Reservas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
