@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EgiTrails.Data;
 using EgiTrails.Models;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace EgiTrails.Controllers
 {
@@ -90,6 +92,9 @@ namespace EgiTrails.Controllers
         // GET: Veiculos/Create
         public IActionResult Create()
         {
+
+
+
             return View();
         }
 
@@ -98,10 +103,20 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VeiculosId,Modelo,NumLugares,Desativo")] Veiculos veiculos)
+        public async Task<IActionResult> Create([Bind("VeiculosId,Modelo,NumLugares,TipoVeiculo,Desativo,Photo")] Veiculos veiculos, IFormFile photoFile)
         {
             if (ModelState.IsValid)
             {
+
+                if (photoFile != null && photoFile.Length > 0)
+                {
+                    using (var memFile = new MemoryStream())
+                    {
+                        photoFile.CopyTo(memFile);
+                        veiculos.Photo = memFile.ToArray();
+                    }
+                }
+
                 _context.Add(veiculos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -116,6 +131,7 @@ namespace EgiTrails.Controllers
             {
                 return NotFound();
             }
+           
 
             var veiculos = await _context.Veiculos.FindAsync(id);
             if (veiculos == null)
@@ -130,17 +146,39 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VeiculosId,Modelo,NumLugares,Desativo")] Veiculos veiculos)
+        public async Task<IActionResult> Edit(int id, [Bind("VeiculosId,Modelo,NumLugares,TipoVeiculo,Desativo,Photo")] Veiculos veiculos, IFormFile photoFile1)
         {
             if (id != veiculos.VeiculosId)
             {
                 return NotFound();
             }
 
+            
+            
             if (ModelState.IsValid)
             {
                 try
                 {
+
+                    if (photoFile1 != null && photoFile1.Length > 0)
+                    {
+                        using (var memFile = new MemoryStream())
+                        {
+                            photoFile1.CopyTo(memFile);
+                            veiculos.Photo = memFile.ToArray();
+                        }
+                    }
+
+                    var photo = _context.Veiculos.Where(i => i.VeiculosId == id).Select(i => i.Photo).Single();
+
+                    if (photoFile1 == null)
+                    {
+                        veiculos.Photo = photo;
+
+                    }
+
+
+
                     _context.Update(veiculos);
                     await _context.SaveChangesAsync();
                 }
