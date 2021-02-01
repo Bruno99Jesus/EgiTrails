@@ -29,16 +29,10 @@ namespace EgiTrails.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataEstado")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
-
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NPessoas")
                         .HasColumnType("int");

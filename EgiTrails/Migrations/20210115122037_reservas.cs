@@ -30,7 +30,7 @@ namespace EgiTrails.Migrations
                 name: "Telemovel",
                 table: "Reservas",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
                 name: "TipoVeiculo",
@@ -61,6 +61,11 @@ namespace EgiTrails.Migrations
                 oldClrType: typeof(string),
                 oldMaxLength: 256);
 
+            migrationBuilder.AddColumn<string>(
+                name: "Descricao",
+                table: "Reservas",
+                type: "nvarchar(max)",
+                nullable: true);
         }
     }
 }
