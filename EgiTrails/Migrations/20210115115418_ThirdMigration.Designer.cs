@@ -4,14 +4,16 @@ using EgiTrails.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210115115418_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,30 +31,13 @@ namespace EgiTrails.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataEstado")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("Estado")
+                    b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NPessoas")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<int>("Telemovel")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TipoVeiculo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservasId");
@@ -70,11 +55,11 @@ namespace EgiTrails.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Distancia")
-                        .HasColumnType("real");
+                    b.Property<string>("Distancia")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LimMaxPes")
-                        .HasColumnType("int");
+                    b.Property<string>("LimMaxPes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LocFim")
                         .HasColumnType("nvarchar(max)");
@@ -88,9 +73,6 @@ namespace EgiTrails.Migrations
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("TipoTrilho")
                         .HasColumnType("nvarchar(max)");
@@ -114,18 +96,9 @@ namespace EgiTrails.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Modelo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("NumLugares")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("TipoVeiculo")
+                    b.Property<string>("NumLugares")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VeiculosId");

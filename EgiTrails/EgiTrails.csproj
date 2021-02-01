@@ -8,6 +8,14 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210109152800_Create002.cs" />
     <Compile Remove="Migrations\20210109152800_Create002.Designer.cs" />
+    <Compile Remove="Migrations\20210115112131_ParametrosMigration.cs" />
+    <Compile Remove="Migrations\20210115112131_ParametrosMigration.Designer.cs" />
+    <Compile Remove="Migrations\20210115112730_RequiredMigration.cs" />
+    <Compile Remove="Migrations\20210115112730_RequiredMigration.Designer.cs" />
+    <Compile Remove="Migrations\20210115113616_ReqMig.cs" />
+    <Compile Remove="Migrations\20210115113616_ReqMig.Designer.cs" />
+    <Compile Remove="Migrations\20210115113756_ReqMig.cs" />
+    <Compile Remove="Migrations\20210115113756_ReqMig.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

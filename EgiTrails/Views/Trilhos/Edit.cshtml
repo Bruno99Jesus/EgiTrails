@@ -20,7 +20,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="TipoTrilho" class="control-label"></label>
-                <input asp-for="TipoTrilho" class="form-control" />
+                <select asp-for="TipoTrilho" class="form-control" required>
+                    <option value="">Selecione uma opção</option>
+                    <option>Urbano</option>
+                    <option>Pedestre</option>
+                    <option>Bicicleta</option>
+                    <option>Off-Road</option>
+                </select>
                 <span asp-validation-for="TipoTrilho" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,6 +40,31 @@
                 <span asp-validation-for="Trajeto" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Distancia" class="control-label"></label>
+                <input asp-for="Distancia" class="form-control" />
+                <span asp-validation-for="Distancia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocIni" class="control-label"></label>
+                <input asp-for="LocIni" class="form-control" />
+                <span asp-validation-for="LocIni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocInter" class="control-label"></label>
+                <input asp-for="LocInter" class="form-control" />
+                <span asp-validation-for="LocInter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocFim" class="control-label"></label>
+                <input asp-for="LocFim" class="form-control" />
+                <span asp-validation-for="LocFim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LimMaxPes" class="control-label"></label>
+                <input asp-for="LimMaxPes" class="form-control" />
+                <span asp-validation-for="LimMaxPes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -44,3 +75,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

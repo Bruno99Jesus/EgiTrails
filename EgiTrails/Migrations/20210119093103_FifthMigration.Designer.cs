@@ -4,14 +4,16 @@ using EgiTrails.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210119093103_FifthMigration")]
+    partial class FifthMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,16 +31,10 @@ namespace EgiTrails.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataEstado")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
-
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NPessoas")
                         .HasColumnType("int");
@@ -89,9 +85,6 @@ namespace EgiTrails.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("TipoTrilho")
                         .HasColumnType("nvarchar(max)");
 
@@ -120,12 +113,6 @@ namespace EgiTrails.Migrations
 
                     b.Property<string>("NumLugares")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("TipoVeiculo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VeiculosId");
