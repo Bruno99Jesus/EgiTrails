@@ -35,7 +35,7 @@ namespace EgiTrails.Models
 
         public byte[] Photo { get; set; }
 
-       
+       public bool EstadoTrilho { get; set; }
 
     }
 }

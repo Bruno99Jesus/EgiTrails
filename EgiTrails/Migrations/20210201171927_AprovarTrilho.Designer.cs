@@ -4,18 +4,20 @@ using EgiTrails.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210201171927_AprovarTrilho")]
+    partial class AprovarTrilho
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.11")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -67,8 +69,8 @@ namespace EgiTrails.Migrations
                     b.Property<float>("Distancia")
                         .HasColumnType("real");
 
-                    b.Property<bool>("EstadoTrilho")
-                        .HasColumnType("bit");
+                    b.Property<int>("EstadoTrilho")
+                        .HasColumnType("int");
 
                     b.Property<int>("LimMaxPes")
                         .HasColumnType("int");

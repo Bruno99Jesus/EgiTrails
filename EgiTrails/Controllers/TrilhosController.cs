@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EgiTrails.Data;
 using EgiTrails.Models;
-using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace EgiTrails.Controllers
 {
@@ -34,7 +34,7 @@ namespace EgiTrails.Controllers
             ViewData["LocInterSortParm"] = sortOrder == "LocInter" ? "locinter_desc" : "LocInter";
             ViewData["LocFimSortParm"] = sortOrder == "LocFim" ? "locfim_desc" : "LocFim";
             ViewData["LimMaxPesSortParm"] = sortOrder == "LimMaxPes" ? "limmaxpes_desc" : "LimMaxPes";
-            
+
             ViewData["CurrentFilter"] = searchString;
 
             if (searchString != null)
@@ -48,7 +48,7 @@ namespace EgiTrails.Controllers
 
 
             var trilhos = from s in _context.Trilhos
-                           select s;
+                          select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -142,12 +142,11 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes")] Trilhos trilhos, IFormFile photoFile)
+        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes,Photo,EstadoTrilho")] Trilhos trilhos, IFormFile photoFile)
         {
             if (ModelState.IsValid)
             {
-
-                if(photoFile != null && photoFile.Length > 0)
+                if (photoFile != null && photoFile.Length > 0)
                 {
                     using (var memFile = new MemoryStream())
                     {
@@ -155,6 +154,7 @@ namespace EgiTrails.Controllers
                         trilhos.Photo = memFile.ToArray();
                     }
                 }
+                trilhos.EstadoTrilho = true;
                 _context.Add(trilhos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -183,7 +183,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes")] Trilhos trilhos)
+        public async Task<IActionResult> Edit(int id, [Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes,Photo,EstadoTrilho")] Trilhos trilhos)
         {
             if (id != trilhos.TrilhosId)
             {

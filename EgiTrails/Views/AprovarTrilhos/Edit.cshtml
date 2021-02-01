@@ -20,13 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TipoTrilho" class="control-label"></label>
-                <select asp-for="TipoTrilho" class="form-control" required>
-                    <option value="">Selecione uma opção</option>
-                    <option>Urbano</option>
-                    <option>Pedestre</option>
-                    <option>Bicicleta</option>
-                    <option>Off-Road</option>
-                </select>
+                <input asp-for="TipoTrilho" class="form-control" />
                 <span asp-validation-for="TipoTrilho" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -65,11 +59,15 @@
                 <span asp-validation-for="LimMaxPes" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <label asp-for="EstadoTrilho" class="control-label"></label>
-            <input type="checkbox" asp-for="EstadoTrilho" class="form-control"/>
-            <span asp-validation-for="EstadoTrilho" class="text-danger"></span>
-             </div>
-            
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EstadoTrilho" /> @Html.DisplayNameFor(model => model.EstadoTrilho)
+                </label>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
