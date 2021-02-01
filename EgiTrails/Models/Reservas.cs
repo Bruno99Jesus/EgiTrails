@@ -25,5 +25,7 @@ namespace EgiTrails.Models
 
         [Required]
         public string TipoVeiculo { get; set; }
+        public string Estado { get; set; }
+        public DateTime? DataEstado { get; set; }
     }
 }

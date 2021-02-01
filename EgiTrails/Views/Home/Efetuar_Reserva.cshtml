@@ -19,7 +19,11 @@
     </div>
     <div class="form-group">
         <label for="exampleInputPhone">Telémovel</label>
-        <input type="number" class="form-control" id="exampleInputPhone" placeholder="Phone">
+        <input type="tel" class="form-control" id="exampleInputPhone" placeholder="Phone">
+    </div>
+    <div class="form-group">
+        <label for="numerodepessoas">Numero de Pessoas</label>
+        <input type="number" class="form-control" id="numerodepessoas" placeholder="Number of people">
     </div>
     <select class="custom-select">
         <option selected>Que tipo de veiculo Prefere</option>
@@ -28,13 +32,17 @@
         <option value="3">velocipede</option>
         <option value="4">Não pretendo veiculo</option>
     </select>
-    <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline1">Tomei conhecimento das medidas da DGS</label>
+    <div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline1">Tomei conhecimento das medidas da DGS</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline2">Não conheço as medidas da DGS</label>
+        </div>
     </div>
-    <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline2">Não conheço as medidas da DGS</label>
+    <div>
+        <button type="submit" class="btn btn-primary">Continuar</button>
     </div>
-    <button type="submit" class="btn btn-primary">Continuar</button>
 </form>
