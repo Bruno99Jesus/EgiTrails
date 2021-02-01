@@ -10,18 +10,26 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="TipoTrilho" class="control-label"></label>
-                <input asp-for="TipoTrilho" class="form-control" />
+                <select asp-for="TipoTrilho" class="form-control" required>
+                    <option value="">Selecione uma opção</option>
+                    <option>Urbano</option>
+                    <option>Pedestre</option>
+                    <option>Bicicleta</option>
+                    <option>OffRoad</option>
+                </select>
                 <span asp-validation-for="TipoTrilho" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
@@ -31,6 +39,35 @@
                 <label asp-for="Trajeto" class="control-label"></label>
                 <input asp-for="Trajeto" class="form-control" />
                 <span asp-validation-for="Trajeto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Distancia" class="control-label"></label>
+                <input asp-for="Distancia" class="form-control" />
+                <span asp-validation-for="Distancia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocIni" class="control-label"></label>
+                <input asp-for="LocIni" class="form-control" />
+                <span asp-validation-for="LocIni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocInter" class="control-label"></label>
+                <input asp-for="LocInter" class="form-control" />
+                <span asp-validation-for="LocInter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocFim" class="control-label"></label>
+                <input asp-for="LocFim" class="form-control" />
+                <span asp-validation-for="LocFim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LimMaxPes" class="control-label"></label>
+                <input asp-for="LimMaxPes" class="form-control" />
+                <span asp-validation-for="LimMaxPes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="PhotoFile" class="control-label">Photo</label>
+                <input name="photoFile" type="file" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -43,3 +80,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
