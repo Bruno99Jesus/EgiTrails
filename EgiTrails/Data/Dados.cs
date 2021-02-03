@@ -8,7 +8,7 @@ namespace EgiTrails.Data
 {
     public class Dados
     {
-        private const string DEFAULT_ADMIN_USER = "A. EgiTrilhos";
+        private const string DEFAULT_ADMIN_USER = "trilhos@egi.pt";
         private const string DEFAULT_ADMIN_EMAIL = "trilhos@egi.pt";
         private const string DEFAULT_ADMIN_PASSWORD = "egi2021";
         private const string ROLE_ADMINISTRATOR = "Admin";
