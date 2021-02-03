@@ -58,7 +58,9 @@ namespace EgiTrails
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+            ApplicationDbContext db,
+            UserManager<IdentityUser> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -92,7 +94,8 @@ namespace EgiTrails
 
             if (env.IsDevelopment())
             {
-                Dados.SeedDevUsers(userManager);
+                Dados.SeedDevData(db);
+                Dados.SeedDevUsersAsync(userManager);
             }
         }
     }

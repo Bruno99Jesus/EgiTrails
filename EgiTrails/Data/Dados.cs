@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EgiTrails.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace EgiTrails.Data
     public class Dados
     {
         private const string DEFAULT_ADMIN_USER = "trilhos@egi.pt";
-        private const string DEFAULT_ADMIN_EMAIL = "trilhos@egi.pt";
         private const string DEFAULT_ADMIN_PASSWORD = "egi2021";
+
         private const string ROLE_ADMINISTRATOR = "Admin";
+        private const string ROLE_GUIA = "Guia";
+        private const string ROLE_TURISTA = "Turista";
 
         internal static async Task SeedDefaultAdminAsync(UserManager<IdentityUser> userManager)
         {
@@ -36,6 +39,8 @@ namespace EgiTrails.Data
         internal static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
         {
             await EnsureRoleIsCreated(roleManager, ROLE_ADMINISTRATOR);
+            await EnsureRoleIsCreated(roleManager, ROLE_GUIA);
+            await EnsureRoleIsCreated(roleManager, ROLE_TURISTA);
         }
 
         private static async Task EnsureRoleIsCreated(RoleManager<IdentityRole> roleManager,String role)
@@ -46,9 +51,25 @@ namespace EgiTrails.Data
             }
         }
 
-        internal static void SeedDevUsers(UserManager<IdentityUser> userManager)
+        internal static async Task SeedDevUsersAsync(UserManager<IdentityUser> userManager)
         {
-           // EnsureUserIsCreated(userManager)
+            await EnsureUserIsCreated(userManager, "guia@egi.pt", "egi2021", ROLE_GUIA);
+            await EnsureUserIsCreated(userManager, "toze@gmail.com", "ze12345", ROLE_TURISTA);
+        }
+
+        internal static void SeedDevData(ApplicationDbContext db)
+        {
+            if (db.Turista.Any()) return;
+
+            db.Turista.Add(new Turista
+            {
+                Nfi = 325548961,
+                Nome = "To Ze",
+                Telemovel = 965123745,
+                Email = "toze@gmail.com"
+        
+            });
+            db.SaveChanges();
         }
     }
 }
