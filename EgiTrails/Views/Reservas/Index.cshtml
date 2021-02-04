@@ -4,17 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Reservation</h1>
+<h1>Reservas</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary" style="margin-bottom:30px; margin-top:15px">Create New</a>
+    <a asp-action="Create" class="btn btn-primary" style="margin-bottom:30px; margin-top:15px">Criar Novo</a>
 </p>
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-primary" />
-            <a asp-action="Index" class="btn btn-secondary">Clear</a>
+            Pesquisar pelo nome: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Pesquisar" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+            <a asp-action="Index" class="btn btn-success">Retroceder Tudo</a>
         </p>
     </div>
 </form>
@@ -78,9 +79,9 @@
                     @Html.DisplayFor(modelItem => item.DataEstado)
                 </th>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ReservasId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ReservasId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ReservasId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.ReservasId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ReservasId">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ReservasId">Eliminar</a>
                 </td>
             </tr>
 
@@ -97,12 +98,12 @@
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-primary @prevDisabled">
-    Previous
+    Anterior
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-primary @nextDisabled">
-    Next
+    Seguinte
 </a>

@@ -158,6 +158,7 @@ namespace EgiTrails.Controllers
                 _context.Add(trilhos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
             return View(trilhos);
         }

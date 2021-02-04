@@ -23,6 +23,8 @@ namespace EgiTrails.Models
         public string Desativo { get; set; }
         public byte[] Photo { get; set; }
 
+      //  public int ReservasID { get; set; }
 
+     //   public virtual ICollection<Reservas> Reservas { get; set; }
     }
 }
