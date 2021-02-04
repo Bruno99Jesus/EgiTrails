@@ -16,7 +16,7 @@
         <p>
             Pesquisar: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
             <input type="submit" value="Procurar" class="btn btn-primary" /> |
-            <a asp-action="Index">Voltar á lista completa</a>
+            <a asp-action="Index" class="btn btn-success">Retroceder Tudo</a>
         </p>
     </div>
 </form>
@@ -128,14 +128,14 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled">
+   class="btn btn-primary @prevDisabled">
     Anterior
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @nextDisabled">
+   class="btn btn-primary @nextDisabled">
     Seguinte
 
 </a>

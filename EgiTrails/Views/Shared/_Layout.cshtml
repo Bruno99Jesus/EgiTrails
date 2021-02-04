@@ -48,15 +48,16 @@
             <div class="logo float-left">
                 <!-- <h1 class="text-light"><a href="index.html"><span>EgiTrails</span></a></h1> -->
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <a href="index.html"><img src="assets/img/1.PNG" alt="" class="img-fluid"></a>
+                <a href="/#"><img src="assets/img/1.PNG" alt="" class="img-fluid"></a>
             </div>
 
             <nav class="nav-menu float-right d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.cshtml">Home</a></li>
-                    <li><a href="/Home/Sobre">Sobre Nós</a></li>
+                    <li><a href="/#">Home</a></li>
+                    <li><a href="/Home/COVID19">COVID-19</a></li>
                     <li><a href="/Reservas/Create">Efetuar Reserva</a></li>
                     <li><a href="/ListaTrilhos/Index">Trilhos</a></li>
+
                     <li><a href="/AprovarTrilhos/Index">Aprovar</a></li>
                     <li><a href="#team">Equipa</a></li>
                     <li><a href="/ReservasVeiculos/Index">Reserva de Veículos</a></li>
@@ -66,6 +67,7 @@
                     }
                     <li><a asp-action="EditPersonal" asp-controller="Turistas">My Account</a></li>
                     
+
                     <li class="drop-down">
                         <a href="">BD</a>
                         <ul>
@@ -75,9 +77,9 @@
                         </ul>
                     </li>
 
-
-
-                    <li><a href="#contact">Contactos</a></li>
+                    <li><a href="/#team">Equipa</a></li>
+                    <li><a href="/#contact">Contactos</a></li>
+                    <li><a href="/Home/Sobre">Sobre Nós</a></li>
                     <li>
                         <partial name="_LoginPartial" />
 
@@ -111,18 +113,18 @@
                             <strong>Email:</strong> egitrails6300@gmail.com<br>
                         </p>
                         <div class="social-links mt-3">
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="https://www.facebook.com/" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="https://www.instagram.com" class="instagram"><i class="bx bxl-instagram"></i></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Ligações Úteis</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Home/Sobre">Sobre Nós</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Serviços</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Home/PoliticaDePrivacidade">Política de Privacidade</a></li>
                         </ul>
                     </div>
 

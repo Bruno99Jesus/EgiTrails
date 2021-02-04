@@ -117,6 +117,7 @@ namespace EgiTrails.Controllers
                 _context.Add(reservas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
             return View(reservas);
         }
@@ -206,5 +207,7 @@ namespace EgiTrails.Controllers
         {
             return _context.Reservas.Any(e => e.ReservasId == id);
         }
+
     }
 }
+
