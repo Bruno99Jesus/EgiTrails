@@ -74,6 +74,11 @@ namespace EgiTrails.Controllers
             return View();
         }
 
+        public IActionResult COVID19()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
