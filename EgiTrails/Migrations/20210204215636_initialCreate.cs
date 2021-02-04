@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EgiTrails.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,10 +52,14 @@ namespace EgiTrails.Migrations
                 {
                     ReservasId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(maxLength: 256, nullable: false),
+                    Telemovel = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(maxLength: 256, nullable: false),
                     Data = table.Column<DateTime>(nullable: false),
                     NPessoas = table.Column<int>(nullable: false),
-                    Descricao = table.Column<string>(nullable: true)
+                    TipoVeiculo = table.Column<string>(nullable: false),
+                    Estado = table.Column<string>(nullable: true),
+                    DataEstado = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,14 +72,37 @@ namespace EgiTrails.Migrations
                 {
                     TrilhosId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(nullable: false),
                     TipoTrilho = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Trajeto = table.Column<string>(nullable: true)
+                    Trajeto = table.Column<string>(nullable: true),
+                    Distancia = table.Column<float>(nullable: false),
+                    LocIni = table.Column<string>(nullable: true),
+                    LocInter = table.Column<string>(nullable: true),
+                    LocFim = table.Column<string>(nullable: true),
+                    LimMaxPes = table.Column<int>(nullable: false),
+                    Photo = table.Column<byte[]>(nullable: true),
+                    EstadoTrilho = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trilhos", x => x.TrilhosId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Turista",
+                columns: table => new
+                {
+                    turistaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(maxLength: 128, nullable: false),
+                    Telemovel = table.Column<int>(nullable: false),
+                    NIF = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Turista", x => x.turistaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,9 +111,11 @@ namespace EgiTrails.Migrations
                 {
                     VeiculosId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Modelo = table.Column<string>(nullable: true),
-                    NumLugares = table.Column<string>(nullable: true),
-                    Desativo = table.Column<string>(nullable: true)
+                    Modelo = table.Column<string>(maxLength: 100, nullable: false),
+                    NumLugares = table.Column<string>(nullable: false),
+                    TipoVeiculo = table.Column<string>(nullable: true),
+                    Desativo = table.Column<string>(nullable: true),
+                    Photo = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -139,8 +168,8 @@ namespace EgiTrails.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -184,8 +213,8 @@ namespace EgiTrails.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -261,6 +290,9 @@ namespace EgiTrails.Migrations
 
             migrationBuilder.DropTable(
                 name: "Trilhos");
+
+            migrationBuilder.DropTable(
+                name: "Turista");
 
             migrationBuilder.DropTable(
                 name: "Veiculos");
