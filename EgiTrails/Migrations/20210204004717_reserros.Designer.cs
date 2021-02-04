@@ -4,14 +4,16 @@ using EgiTrails.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204004717_reserros")]
+    partial class reserros
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,33 +106,6 @@ namespace EgiTrails.Migrations
                     b.HasKey("TrilhosId");
 
                     b.ToTable("Trilhos");
-                });
-
-            modelBuilder.Entity("EgiTrails.Models.Turista", b =>
-                {
-                    b.Property<int>("turistaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Nfi")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-
-                    b.Property<int>("Telemovel")
-                        .HasColumnType("int");
-
-                    b.HasKey("turistaId");
-
-                    b.ToTable("Turista");
                 });
 
             modelBuilder.Entity("EgiTrails.Models.Veiculos", b =>
