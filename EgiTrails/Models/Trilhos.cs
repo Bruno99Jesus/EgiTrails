@@ -37,5 +37,9 @@ namespace EgiTrails.Models
 
        public bool EstadoTrilho { get; set; }
 
+        //public int ReservasID { get; set; }
+
+        //public virtual ICollection<Reservas> Reservas { get; set; }
+
     }
 }

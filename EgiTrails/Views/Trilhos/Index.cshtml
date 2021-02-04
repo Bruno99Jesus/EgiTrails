@@ -4,22 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Trilhos</h1>
 
 <p>
     <form asp-action="Index" method="get">
         <div class="form-actions no-color">
 <p>
     Procurar pelo nome: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-    <input type="submit" value="Search" class="btn btn-default" /> |
-    <a asp-action="Index">Mostrar Lista Completa</a>
+    <input type="submit" value="Pesquisar" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+    <a asp-action="Index" class="btn btn-success">Mostrar Lista Completa</a>
 </p>
     </div>
 </form>
 
 
-
-<a asp-action="Create">Create New</a>
+<a asp-action="Create" type="button" class="btn btn-primary" style="margin-bottom:30px">Adicionar Trilho</a>
 </p>
 <table class="table">
     <thead>
@@ -86,9 +86,9 @@
                     @Html.DisplayFor(modelItem => item.LimMaxPes)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.TrilhosId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.TrilhosId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.TrilhosId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.TrilhosId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.TrilhosId">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TrilhosId">Apagar</a>
                 </td>
             </tr>
         }
@@ -103,13 +103,13 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled">
-    Previous
+   class="btn btn-primary @prevDisabled">
+    Anterior
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @nextDisabled">
-    Next
+   class="btn btn-primary @nextDisabled">
+    Seguinte
 </a>
