@@ -1,53 +1,108 @@
-﻿@model IEnumerable<EgiTrails.Models.Reservas>
+﻿@model PaginatedList<EgiTrails.Models.Reservas>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Reservation</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary" style="margin-bottom:30px; margin-top:15px">Create New</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Clear</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().Nome)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().Telemovel)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NPessoas)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().Email)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoVeiculo)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().Data)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().NPessoas)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().TipoVeiculo)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().Estado)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.First().DataEstado)</a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NPessoas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoVeiculo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ReservasId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReservasId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReservasId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telemovel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NPessoas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoVeiculo)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.DataEstado)
+                </th>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ReservasId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ReservasId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ReservasId">Delete</a>
+                </td>
+            </tr>
+
+        }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
