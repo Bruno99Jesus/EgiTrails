@@ -63,7 +63,7 @@ namespace EgiTrails.Data
 
             db.Turista.Add(new Turista
             {
-                Nfi = 325548961,
+                NIF = 325548961,
                 Nome = "To Ze",
                 Telemovel = 965123745,
                 Email = "toze@gmail.com"

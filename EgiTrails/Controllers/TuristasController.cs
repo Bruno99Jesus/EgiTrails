@@ -23,9 +23,53 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Turistas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            return View(await _context.Turista.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["telemovelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Telemovel" : "";
+            ViewData["nifSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Nif" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            var turista = from s in _context.Turista
+                           select s;
+
+
+            switch (sortOrder)
+            {
+                case "telemovel":
+                    turista = turista.OrderBy(s => s.Telemovel);
+                    break;
+                case "Nif":
+                    turista = turista.OrderBy(s => s.NIF);
+                    break;
+                case "email":
+                    turista = turista.OrderBy(s => s.Email);
+                    break;
+                default:
+                    turista = turista.OrderBy(s => s.Nome);
+                    break;
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                turista = turista.Where(s => s.Nome.Contains(searchString)
+                                       || s.Telemovel.ToString().Contains(searchString)
+                                       || s.Email.Contains(searchString)
+                                       || s.NIF.ToString().Contains(searchString));
+            }
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            int pageSize = 4;
+            return View(await PaginatedList<Turista>.CreateAsync(turista.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Turistas/Details/5
@@ -68,7 +112,7 @@ namespace EgiTrails.Controllers
 
             if (user != null)
             {
-                ModelState.AddModelError("Email", "There is allready a customer with that email.");
+                ModelState.AddModelError("Email", "There is allready a turist with that email.");
                 return View(turista);
             }
 
@@ -78,7 +122,9 @@ namespace EgiTrails.Controllers
             Turista turistaa = new Turista
             {
                 Nome = turista.Nome,
-                Email = turista.Email
+                Email = turista.Email,
+                NIF = turista.NIF,
+                Telemovel = turista.Telemovel
             };
             _context.Add(turistaa);
             await _context.SaveChangesAsync();
@@ -97,7 +143,9 @@ namespace EgiTrails.Controllers
             editlogin turistainfo = new editlogin
             {
                 Nome = turista.Nome,
-                Email = turista.Email
+                Email = turista.Email,
+                NIF = turista.NIF,
+                Telemovel = turista.Telemovel
             };
 
             return View(turistainfo);
@@ -120,9 +168,13 @@ namespace EgiTrails.Controllers
             }
 
             turistaLoggedin.Nome = turista.Nome;
+            turistaLoggedin.Telemovel = turista.Telemovel;
+            turistaLoggedin.NIF = turista.NIF;
 
             try
             {
+                _context.Update(turistaLoggedin);
+                _context.Update(turistaLoggedin);
                 _context.Update(turistaLoggedin);
                 await _context.SaveChangesAsync();
             }

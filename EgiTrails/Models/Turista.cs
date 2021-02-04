@@ -21,8 +21,8 @@ namespace EgiTrails.Models
         public int Telemovel { get; set; }
 
         [Required]
-        [Display(Name = "Nfi")]
-        public int Nfi { get; set; }
+        [Display(Name = "NIF")]
+        public int NIF { get; set; }
 
         [Required]
         [EmailAddress]

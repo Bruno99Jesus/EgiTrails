@@ -60,8 +60,12 @@
                     <li><a href="/AprovarTrilhos/Index">Aprovar</a></li>
                     <li><a href="#team">Equipa</a></li>
                     <li><a href="/ReservasVeiculos/Index">Reserva de Veículos</a></li>
-                   
-
+                    @if (User.IsInRole("Admin") || User.IsInRole("Guia"))
+                    {
+                        <li><a asp-action="Index" asp-controller="Turistas">Contas</a></li>
+                    }
+                    <li><a asp-action="EditPersonal" asp-controller="Turistas">My Account</a></li>
+                    
                     <li class="drop-down">
                         <a href="">BD</a>
                         <ul>
