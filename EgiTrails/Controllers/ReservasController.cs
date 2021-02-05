@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EgiTrails.Controllers
 {
+    [Authorize]
     public class ReservasController : Controller
     {
         private readonly ApplicationDbContext _context;
