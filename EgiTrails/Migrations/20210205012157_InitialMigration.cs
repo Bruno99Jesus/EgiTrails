@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EgiTrails.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,14 +72,14 @@ namespace EgiTrails.Migrations
                 {
                     TrilhosId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: false),
-                    TipoTrilho = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(maxLength: 256, nullable: false),
+                    TipoTrilho = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Trajeto = table.Column<string>(nullable: true),
+                    Trajeto = table.Column<byte[]>(nullable: true),
                     Distancia = table.Column<float>(nullable: false),
-                    LocIni = table.Column<string>(nullable: true),
-                    LocInter = table.Column<string>(nullable: true),
-                    LocFim = table.Column<string>(nullable: true),
+                    LocIni = table.Column<string>(maxLength: 256, nullable: false),
+                    LocInter = table.Column<string>(maxLength: 256, nullable: true),
+                    LocFim = table.Column<string>(maxLength: 256, nullable: false),
                     LimMaxPes = table.Column<int>(nullable: false),
                     Photo = table.Column<byte[]>(nullable: true),
                     EstadoTrilho = table.Column<bool>(nullable: false)
@@ -97,7 +97,7 @@ namespace EgiTrails.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(maxLength: 128, nullable: false),
                     Telemovel = table.Column<int>(nullable: false),
-                    NIF = table.Column<int>(nullable: false),
+                    NIF = table.Column<int>(maxLength: 9, nullable: false),
                     Email = table.Column<string>(nullable: false)
                 },
                 constraints: table =>

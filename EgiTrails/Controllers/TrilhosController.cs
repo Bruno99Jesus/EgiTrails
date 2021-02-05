@@ -142,10 +142,18 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes,Photo,EstadoTrilho")] Trilhos trilhos, IFormFile photoFile)
+        public async Task<IActionResult> Create([Bind("TrilhosId,Nome,TipoTrilho,Description,Trajeto,Distancia,LocIni,LocInter,LocFim,LimMaxPes,Photo,EstadoTrilho")] Trilhos trilhos, IFormFile photoFile, IFormFile gpsFile)
         {
             if (ModelState.IsValid)
             {
+                if (gpsFile != null && gpsFile.Length > 0)
+                {
+                    using (var memFile = new MemoryStream())
+                    {
+                        gpsFile.CopyTo(memFile);
+                        trilhos.Trajeto = memFile.ToArray();
+                    }
+                }
                 if (photoFile != null && photoFile.Length > 0)
                 {
                     using (var memFile = new MemoryStream())

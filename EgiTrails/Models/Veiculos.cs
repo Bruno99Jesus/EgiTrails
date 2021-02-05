@@ -18,6 +18,7 @@ namespace EgiTrails.Models
         public string Modelo { get; set; }
 
         [Required]
+        [Range(1, 12, ErrorMessage = "O número de lugares deve ser entre 1 e 12")]
         public string NumLugares { get; set; }
         public string TipoVeiculo { get; set; }
         public string Desativo { get; set; }
@@ -25,6 +26,6 @@ namespace EgiTrails.Models
 
       //  public int ReservasID { get; set; }
 
-     //   public virtual ICollection<Reservas> Reservas { get; set; }
+      //public virtual ICollection<Reservas> Reservas { get; set; }
     }
 }

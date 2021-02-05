@@ -24,6 +24,7 @@ namespace EgiTrails.Models
         [Required(ErrorMessage = "Insira a Data")]
         public DateTime Data { get; set; }
         [Required(ErrorMessage = "Indique o nº de Pessoas")]
+        [Range(1, 15, ErrorMessage = "O número de pessoas deve ser entre 1 e 15" )]
         public int NPessoas { get; set; }
 
         [Required]
@@ -31,11 +32,14 @@ namespace EgiTrails.Models
         public string Estado { get; set; }
         public DateTime? DataEstado { get; set; }
 
-      //  public int VeiculosID { get; set; }
-      //  public int TrilhosID { get; set; }
+     // public int VeiculosID { get; set; }
+      // public int TrilhosID { get; set; }
+       // public int TuristasID { get; set; }
 
        // public virtual ICollection<Veiculos> Veiculos { get; set; }
-       // public virtual Trilhos Trilhos { get; set; }
+      // public virtual Trilhos Trilhos { get; set; }
+
+        //public virtual Turista Turistas { get; set; }
 
 
 
