@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EgiTrails.Data;
 using EgiTrails.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EgiTrails.Controllers
 {
@@ -73,6 +74,7 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Turistas/Details/5
+        [Authorize(Roles = "Admin,Guia")]    
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -118,6 +120,7 @@ namespace EgiTrails.Controllers
 
             user = new IdentityUser(username);
             await _userManager.CreateAsync(user, turista.Password);
+            await _userManager.AddToRoleAsync(user, "Turista");
 
             Turista turistaa = new Turista
             {
@@ -130,6 +133,7 @@ namespace EgiTrails.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index), "Home");
         }
+        [Authorize(Roles = "Turista")]
         public async Task<IActionResult> EditPersonal()
         {
             string email = User.Identity.Name;
@@ -188,6 +192,7 @@ namespace EgiTrails.Controllers
         }
 
         // GET: Turistas/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -208,6 +213,7 @@ namespace EgiTrails.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("turistaId,Nome,Telemovel,Nfi,Email")] Turista turista)
         {
             if (id != turista.turistaId)

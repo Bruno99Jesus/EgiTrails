@@ -64,27 +64,28 @@
                     @if (User.IsInRole("Admin") || User.IsInRole("Guia"))
                     {
                         <li><a asp-action="Index" asp-controller="Turistas">Contas</a></li>
+                    }@if (User.IsInRole("Turista"))
+                    {
+                        <li><a asp-action="EditPersonal" asp-controller="Turistas">My Account</a></li>
                     }
-                    <li><a asp-action="EditPersonal" asp-controller="Turistas">My Account</a></li>
 
+                        <li class="drop-down">
+                            <a href="">BD</a>
+                            <ul>
+                                <li><a href="/Reservas">ReservaBD</a></li>
+                                <li><a href="/Trilhos">TrilhosBD</a></li>
+                                <li><a href="/Veiculos">VeiculosBD</a></li>
+                            </ul>
+                        </li>
 
-                    <li class="drop-down">
-                        <a href="">BD</a>
-                        <ul>
-                            <li><a href="/Reservas">ReservaBD</a></li>
-                            <li><a href="/Trilhos">TrilhosBD</a></li>
-                            <li><a href="/Veiculos">VeiculosBD</a></li>
-                        </ul>
-                    </li>
+                        <li><a href="/#team">Equipa</a></li>
+                        <li><a href="/#contact">Contactos</a></li>
+                        <li><a href="/Home/Sobre">Sobre Nós</a></li>
+                        <li>
+                            <partial name="_LoginPartial" />
 
-                    <li><a href="/#team">Equipa</a></li>
-                    <li><a href="/#contact">Contactos</a></li>
-                    <li><a href="/Home/Sobre">Sobre Nós</a></li>
-                    <li>
-                        <partial name="_LoginPartial" />
-
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
             </nav><!-- .nav-menu -->
 
         </div>
