@@ -25,31 +25,28 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NomeSortParm"]">@Html.DisplayNameFor(model => model.First().Nome)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NomeSortParm"]">@Html.DisplayName("Nome")</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["TipoTrilhoSortParm"]">@Html.DisplayNameFor(model => model.First().TipoTrilho)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TipoTrilhoSortParm"]">@Html.DisplayName("Tipo de Trilho")</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().Description)
+                @Html.DisplayName("Descrição")
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["TrajetoSortParm"]">@Html.DisplayNameFor(model => model.First().Trajeto)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DistanciaSortParm"]">@Html.DisplayName("Distância")</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DistanciaSortParm"]">@Html.DisplayNameFor(model => model.First().Distancia)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocIniSortParm"]">@Html.DisplayName("Localização Inicial")</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocIniSortParm"]">@Html.DisplayNameFor(model => model.First().LocIni)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocInterSortParm"]">@Html.DisplayName("Localização Intermédia")</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocInterSortParm"]">@Html.DisplayNameFor(model => model.First().LocInter)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocFimSortParm"]">@Html.DisplayName("Localização Final")</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocFimSortParm"]">@Html.DisplayNameFor(model => model.First().LocFim)</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["LimMaxPesSortParm"]">@Html.DisplayNameFor(model => model.First().LimMaxPes)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LimMaxPesSortParm"]">@Html.DisplayName("Limite Máximo de Pessoas")</a>
             </th>
             <th></th>
         </tr>
@@ -66,9 +63,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Trajeto)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Distancia)
