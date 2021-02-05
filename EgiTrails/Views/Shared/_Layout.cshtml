@@ -54,24 +54,24 @@
             <nav class="nav-menu float-right d-none d-lg-block">
                 <ul>
                     <li><a href="/#">Home</a></li>
-                    <li><a href="/Home/COVID19">COVID-19</a></li>
                     <li><a href="/Reservas/Create">Efetuar Reserva</a></li>
-                    <li><a href="/ListaTrilhos/Index">Trilhos</a></li>
                     <li><a href="/Home/PontosInteresse">Pontos de Interesse</a></li>
+                    <li><a href="/ListaTrilhos/Index">Trilhos</a></li>
+                    <li><a href="/ReservasVeiculos/Index">Veículos</a></li>
+
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a href="/AprovarTrilhos/Index">Aprovar</a></li>
                     }
-                    <li><a href="#team">Equipa</a></li>
-                    <li><a href="/ReservasVeiculos/Index">Reserva de Veículos</a></li>
+
                     @if (User.IsInRole("Admin") || User.IsInRole("Guia"))
                     {
                         <li><a asp-action="Index" asp-controller="Turistas">Contas</a></li>
                     }@if (User.IsInRole("Turista"))
                     {
-                        <li><a asp-action="EditPersonal" asp-controller="Turistas">My Account</a></li>
+                        <li><a asp-action="EditPersonal" asp-controller="Turistas">Perfil</a></li>
                     }
-                   
+
                     @if (User.IsInRole("Admin") || User.IsInRole("Guia"))
                     {
                         <li class="drop-down">
@@ -83,15 +83,21 @@
                             </ul>
                         </li>
                     }
-                        <li><a href="/#team">Equipa</a></li>
-                        <li><a href="/#contact">Contactos</a></li>
-                        <li><a href="/Home/Sobre">Sobre Nós</a></li>
-                        <li>
-                            <partial name="_LoginPartial" />
+                    <li class="drop-down">
+                        <a href="">Sobre</a>
+                        <ul>
+                            <li><a href="/#team">Equipa</a></li>
+                            <li><a href="/#contact">Contactos</a></li>
+                            <li><a href="/Home/Sobre">Sobre Nós</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Home/COVID19">COVID-19</a></li>
+                    <li>
+                        <partial name="_LoginPartial" />
 
-                        </li>
-                    </ul>
-            </nav><!-- .nav-menu -->
+                    </li>
+                </ul>
+</nav><!-- .nav-menu -->
 
         </div>
     </header><!-- End Header -->
