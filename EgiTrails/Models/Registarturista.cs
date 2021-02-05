@@ -15,14 +15,10 @@ namespace EgiTrails.Models
 
         [Required]
         [Phone]
-        [MinLength(9, ErrorMessage = "O número de telefone deve ter 9 digitos")]
-        [MaxLength(9)]
         [Display(Name = "Telemóvel")]
         public int Telemovel { get; set; }
 
         [Required]
-        [MinLength(9, ErrorMessage = "O número de telefone deve ter 9 digitos")]
-        [MaxLength(9)]
         [Display(Name = "NIF")]
         public int NIF { get; set; }
 
