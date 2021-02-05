@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EgiTrails.Data;
 using EgiTrails.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EgiTrails.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AprovarTrilhosController : Controller
     {
         private readonly ApplicationDbContext _context;
