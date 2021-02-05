@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EgiTrails.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210204215636_initialCreate")]
-    partial class initialCreate
+    [Migration("20210205012157_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,26 +82,33 @@ namespace EgiTrails.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LocFim")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("LocIni")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("LocInter")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("TipoTrilho")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Trajeto")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Trajeto")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("TrilhosId");
 
@@ -120,7 +127,8 @@ namespace EgiTrails.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NIF")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(9);
 
                     b.Property<string>("Nome")
                         .IsRequired()
